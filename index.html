@@ -12,6 +12,9 @@
 margin-top:80px;
 padding:40px 20px;
 text-align:center;
+max-width:1400px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .timelineTitle{
@@ -21,8 +24,7 @@ margin-bottom:60px;
 
 .timeline{
 position:relative;
-width:90%;
-max-width:1200px;
+width:min(1400px, 92%);
 margin:auto;
 }
 
@@ -36,21 +38,25 @@ background:#ff4d8d;
 top:0;
 bottom:0;
 left:50%;
-margin-left:-2px;
+transform:translateX(-50%);
 border-radius:10px;
+}
+
+.timelineContent{
+max-width:500px;
 }
 
 /* ITEM */
 
 .timelineItem{
-padding:20px 50px;
+padding:20px 40px;
 position:relative;
 width:50%;
 box-sizing:border-box;
 }
 
 .timelineContent{
-max-width:450px;
+max-width:650px;
 }
 
 .timelineSection{
@@ -71,6 +77,43 @@ border-radius:50%;
 top:30px;
 z-index:1;
 box-shadow:0 0 10px #ff4d8d;
+}
+
+@media (min-width:1600px){
+
+.timeline{
+width:1600px;
+}
+
+.timelineContent{
+max-width:750px;
+}
+
+}
+
+.timelineCard{
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+.timelineItem:nth-child(odd){
+left:0;
+text-align:right;
+}
+
+.timelineItem:nth-child(even){
+left:50%;
+text-align:left;
+}
+
+.timelineItem{
+padding:20px 40px;
+position:relative;
+width:50%;
+box-sizing:border-box;
+}
+
+.timelineContent{
+max-width:500px;
 }
 
 /* ESQUERDA */
@@ -133,8 +176,11 @@ color:#f3c6d5;
 
 @media screen and (max-width:700px){
 
-.timeline::after{
-left:20px;
+.timeline{
+position:relative;
+width:100%;
+max-width:1400px;
+margin:0 auto;
 }
 
 .timelineItem{
@@ -156,6 +202,26 @@ text-align:left;
 flex-direction:row;
 }
 
+}
+
+.timelineItem::after{
+content:"";
+position:absolute;
+width:16px;
+height:16px;
+right:-8px;
+background:#ff4d8d;
+border-radius:50%;
+top:25px;
+z-index:1;
+}
+
+.timelineItem::after{
+box-shadow:0 0 10px #ff4d8d;
+}
+
+.timelineItem:nth-child(even)::after{
+left:-8px;
 }
 
 /* Nova tela de transição pós-vídeo */
@@ -989,8 +1055,7 @@ window.toggleCarta = function() {
         <source src="seu-video.mp4" type="video/mp4">
         Seu navegador não suporta vídeos.
     </video>
-    <button class="btn-pular" onclick="finalizarVideo()">Pular Vídeo ❯</button>
-</div>
+        <button id="btnVideo" class="btn-pular" onclick="pularVideo()">Pular vídeo ❯</button></div>
 
 <div id="transicao-pos-video" class="overlay-tela">
     <div class="spinner-simples"></div>
@@ -1059,42 +1124,57 @@ function iniciarLoading() {
     let progresso = 0;
     const barra = document.getElementById('barra-progresso');
     const status = document.getElementById('status-loading');
-    
+
     const frases = ["Carregando memórias...", "Sintonizando amor...", "Quase pronto!"];
-    
+
     const intervalo = setInterval(() => {
+
         progresso += Math.random() * 20;
+
         if (progresso >= 100) {
             progresso = 100;
             clearInterval(intervalo);
-            
+
             setTimeout(() => {
-                // 1. Esconde o loading
+
                 document.getElementById('tela-loading').style.display = 'none';
-                
-                // 2. Pausa a música do site (garantia)
+
                 const musicaSite = document.getElementById('musica');
                 if(musicaSite) musicaSite.pause();
 
-                // 3. Mostra e dá play no vídeo
                 const telaVideo = document.getElementById('tela-video');
                 const videoElement = document.getElementById('meuVideo');
-                
-                telaVideo.style.display = 'flex';
-                videoElement.play(); 
 
-                // Quando o vídeo acabar sozinho, chama a função de finalizar
-                videoElement.onended = function() {
-                    finalizarVideo();
-                };
+                telaVideo.style.display = 'flex';
+                videoElement.play();
+
+                iniciarControleVideo();
+
             }, 800);
         }
-        
+
         barra.style.width = progresso + "%";
+
         if(progresso > 30) status.innerText = frases[0];
         if(progresso > 60) status.innerText = frases[1];
         if(progresso > 85) status.innerText = frases[2];
+
     }, 400);
+}
+
+function pularVideo(){
+    finalizarVideo();
+}
+
+function iniciarControleVideo(){
+    const btn = document.getElementById("btnVideo");
+
+    setTimeout(() => {
+        if(btn){
+            btn.innerText = "Continuar ❯";
+            btn.onclick = finalizarVideo;
+        }
+    },13000);
 }
 
 // Função para finalmente mostrar o site
@@ -1208,7 +1288,7 @@ function finalizarVideo() {
     <div class="envelope-front"></div>
     
     <div class="envelope-paper">
-        <img src="fotocarta.jpeg" class="foto-interna">
+        <img src="fotoCarta.jpeg" class="foto-interna">
         <h2>Para você, Meu Amor! 🤍</h2>
         <p>
          Minha vida,
@@ -1331,6 +1411,4 @@ audio.addEventListener("timeupdate", () => {
 </div>
 
 </body>
-
 </html>
-
