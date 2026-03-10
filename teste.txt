@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Andre ❤️ Emily</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(#3b0a2a, #1a0614);
+    color: white;
+    text-align: center;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
+}
+
+/* HEADER RESPONSIVO */
+.header {
+    background: #b8868e;
+    padding: 20px 15px;
+    font-size: clamp(16px, 4vw, 24px); /* Fonte ajusta conforme o tamanho da tela */
+    font-weight: bold;
+}
+
+.container {
+    padding: 15px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* MÚSICA */
+.music {
+    background: #5b1a3c;
+    padding: 20px;
+    border-radius: 28px;
+    margin-bottom: 25px;
+}
+
+.musicTitle {
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+    animation: scrollMusic 8s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes scrollMusic {
+    0% { transform: translateX(80%); }
+    100% { transform: translateX(-80%); }
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.slides img {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* TIMER (CORRIGIDO PARA CELULAR) */
+.timer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas no PC */
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.box {
+    background: linear-gradient(145deg, #4a1230, #2a0a1a);
+    padding: 15px 5px;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.label {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* TIMELINE (CORRIGIDA) */
+.timeline {
+    margin: 30px 10px;
+    padding: 20px 15px;
+    background: #2a0a1a; 
+    border-radius: 20px;
+}
+
+.timelineItem {
+    display: flex;
+    flex-direction: row; /* Lado a lado no PC */
+    align-items: center;
+    gap: 15px;
+    background: #4a1230;
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.timelineItem img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* CARTA */
+.carta {
+    display: none;
+    margin-top: 20px;
+    background: #9333ea;
+    padding: 25px;
+    border-radius: 15px;
+    line-height: 1.6;
+}
+
+.fotoCarta {
+    width: 100%; /* No celular ocupa tudo */
+    max-width: 300px; /* No PC não fica gigante */
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* MEDIA QUERIES PARA CELULAR */
+@media (max-width: 480px) {
+    .timer {
+        grid-template-columns: repeat(2, 1fr); /* No celular pequeno, fica em 2 colunas */
+    }
+    
+    .timelineItem {
+        flex-direction: column; /* Foto em cima do texto no celular */
+        text-align: center;
+    }
+    
+    .timelineText {
+        text-align: center;
+    }
+
+    .timelineItem img {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* CORAÇÕES E ANIMAÇÃO */
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    animation: subir linear infinite;
+}
+
+@keyframes subir {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+.loveBtn {
+    margin-top: 25px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: #9333ea;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+}
+</style>
+
+</head>
+
+<script>
+
+let slideIndex = 0;
+
+function mudarSlide(n){
+...
+}
+
+const startDate = new Date("2022-10-07T00:00:00")
+
+function update(){
+...
+}
+
+setInterval(update,1000)
+
+function abrirCarta(){
+document.getElementById("carta").style.display="block"
+}
+
+const audio = document.getElementById("musica");
+
+document.addEventListener("click", () => {
+audio.play();
+});
+
+const heartContainer = document.querySelector(".hearts")
+
+function criarCoracao(){
+
+const coracao = document.createElement("div")
+coracao.classList.add("heart")
+coracao.innerHTML = "❤️"
+
+coracao.style.left = Math.random()*100 + "vw"
+coracao.style.fontSize = (Math.random()*15 + 15) + "px"
+coracao.style.animationDuration = (Math.random()*3 + 4) + "s"
+
+heartContainer.appendChild(coracao)
+
+setTimeout(()=>{
+coracao.remove()
+},7000)
+
+}
+
+setInterval(criarCoracao,500)
+
+</script>
+
+<body>
+
+<div class="hearts"></div>
+
+<div class="header">
+Para a mulher incrível que tenho a sorte de amar 🤍
+</div>
+
+<div class="container">
+
+<div class="music">
+
+<img src="album.jpeg" class="albumCover">
+
+<div class="musicWrapper">
+<div class="musicTitle">
+🎵 Mirrors — Justin Timberlake
+</div>
+</div>
+
+<audio id="musica" controls autoplay loop style="width:100%">
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+
+</div>
+
+<div class="slider">
+
+<button class="prev" onclick="mudarSlide(-1)">❮</button>
+
+<div class="slides" id="slides">
+
+<img src="foto1.jpeg">
+<img src="foto2.jpeg">
+<img src="foto3.jpeg">
+<img src="foto4.jpeg">
+<img src="foto5.jpeg">
+<img src="foto6.jpeg">
+<img src="foto7.jpeg">
+
+</div>
+
+<button class="next" onclick="mudarSlide(1)">❯</button>
+
+</div>
+
+<div class="dots">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Andre Gustavo e Emily</h2>
+
+<p>Juntos desde 07/10/2022</p>
+
+<div class="timer">
+
+<div class="box">
+<span id="years"></span>
+<div class="label">Anos</div>
+</div>
+
+<div class="box">
+<span id="months"></span>
+<div class="label">Meses</div>
+</div>
+
+<div class="box">
+<span id="days"></span>
+<div class="label">Dias</div>
+</div>
+
+<div class="box">
+<span id="hours"></span>
+<div class="label">Horas</div>
+</div>
+
+<div class="box">
+<span id="minutes"></span>
+<div class="label">Minutos</div>
+</div>
+
+<div class="box">
+<span id="seconds"></span>
+<div class="label">Segundos</div>
+</div>
+
+</div>
+
+<!-- BOTÃO -->
+
+<button onclick="abrirCarta()" class="loveBtn">
+Uma mensagem para você 💌
+</button>
+
+<!-- CARTA -->
+
+<div id="carta" class="carta">
+
+<img src="fotoCarta.jpeg" class="fotoCarta">
+
+<h2>Para você, Emily 🤍</h2>
+
+<p>
+Hoje é o seu dia, mas a verdade é que todos os dias deveriam ser seus.
+Quero que você saiba o quanto você é especial pra mim. Sua beleza, seu jeito, sua força, sua inteligência e tudo que você é fazem você ser uma mulher incrível.
+
+Ter você na minha vida é um presente que eu agradeço todos os dias. Você ilumina meus dias, me faz sorrir, me faz sentir coisas que ninguém nunca conseguiu.
+
+Nesse Dia das Mulheres, eu só quero te lembrar que você é maravilhosa, única e muito importante pra mim. Que nunca falte amor, felicidade e sonhos na sua vida… e, se depender de mim, eu vou estar sempre ao seu lado para viver tudo isso com você.
+
+Com carinho,
+do cara que te admira, te deseja e te ama. 🤍🤍🤍
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let slideIndex = 0;
+
+function mudarSlide(n){
+
+const slides = document.getElementById("slides")
+const total = slides.children.length
+
+slideIndex += n
+
+if(slideIndex < 0){
+slideIndex = total - 1
+}
+
+if(slideIndex >= total){
+slideIndex = 0
+}
+
+slides.style.transform = `translateX(-${slideIndex * 100}%)`
+
+}
+
+const startDate = new Date("2022-10-07T00:00:00")
+
+function update(){
+
+const now = new Date()
+const diff = now - startDate
+
+const seconds = Math.floor(diff/1000)%60
+const minutes = Math.floor(diff/60000)%60
+const hours = Math.floor(diff/3600000)%24
+const days = Math.floor(diff/86400000)%30
+const months = Math.floor(diff/(86400000*30))%12
+const years = Math.floor(diff/(86400000*365))
+
+document.getElementById("years").innerText=years
+document.getElementById("months").innerText=months
+document.getElementById("days").innerText=days
+document.getElementById("hours").innerText=hours
+document.getElementById("minutes").innerText=minutes
+document.getElementById("seconds").innerText=seconds
+
+}
+
+setInterval(update,1000)
+
+function abrirCarta(){
+document.getElementById("carta").style.display="block"
+}
+
+const audio = document.getElementById("musica");
+
+document.addEventListener("click", () => {
+audio.play();
+});
+const heartContainer = document.querySelector(".hearts")
+
+function criarCoracao(){
+
+const coracao = document.createElement("div")
+coracao.classList.add("heart")
+coracao.innerHTML="❤️"
+
+coracao.style.left=Math.random()*100+"vw"
+coracao.style.fontSize=(Math.random()*30+25)+"px"
+coracao.style.animationDuration=(Math.random()*3+4)+"s"
+
+heartContainer.appendChild(coracao)
+
+setTimeout(()=>{
+coracao.remove()
+},7000)
+
+}
+
+setInterval(criarCoracao,200)
+
+</script>
+
+<div class="timeline">
+
+<h2>Nossa História ❤️</h2>
+
+<div class="timelineItem">
+<img src="momento1.jpeg">
+<div class="timelineText">
+<h3>28/01/2019</h3>
+<p>O dia em que nosso amor começou.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="momento2.jpeg">
+<div class="timelineText">
+<h3>Primeiro encontro depois de anos longe</h3>
+<p>Um dia inesquecível para nós dois.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="momento3.jpeg">
+<div class="timelineText">
+<h3>Primeira vinda para o RJ</h3>
+<p>Momentos incríveis que vivemos juntos.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="momento4.jpeg">
+<div class="timelineText">
+<h3>Onde meu coração quer chegar</h3>
+<p>Nossa história só está começando, e o meu capítulo favorito será aquele em que casamos.</p>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

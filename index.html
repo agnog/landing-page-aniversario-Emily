@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Andre ❤️ Emily</title>
+
+<style>
+
+.timelineSection{
+margin-top:80px;
+padding:40px 20px;
+text-align:center;
+}
+
+.timelineTitle{
+font-size:30px;
+margin-bottom:60px;
+}
+
+.timeline{
+position:relative;
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* LINHA CENTRAL */
+
+.timeline::after{
+content:"";
+position:absolute;
+width:4px;
+background:#ff4d8d;
+top:0;
+bottom:0;
+left:50%;
+margin-left:-2px;
+border-radius:10px;
+}
+
+/* ITEM */
+
+.timelineItem{
+padding:20px 50px;
+position:relative;
+width:50%;
+box-sizing:border-box;
+}
+
+.timelineContent{
+max-width:450px;
+}
+
+.timelineSection{
+max-width:1400px;
+margin:auto;
+}
+
+/* PONTO */
+
+.timelineItem::after{
+content:"";
+position:absolute;
+width:20px;
+height:20px;
+right:-10px;
+background:#ff4d8d;
+border-radius:50%;
+top:30px;
+z-index:1;
+box-shadow:0 0 10px #ff4d8d;
+}
+
+/* ESQUERDA */
+
+.left{
+left:0;
+text-align:right;
+}
+
+/* DIREITA */
+
+.right{
+left:50%;
+}
+
+.right::after{
+left:-10px;
+}
+
+/* CARD */
+
+.timelineContent{
+background:#5a0f2e;
+padding:20px;
+border-radius:20px;
+display:flex;
+gap:15px;
+align-items:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.timelineContent:hover{
+transform:scale(1.05);
+}
+
+/* FOTO */
+
+.timelineContent img{
+width:70px;
+height:70px;
+border-radius:15px;
+object-fit:cover;
+}
+
+/* TEXTO */
+
+.timelineContent h3{
+margin:0;
+font-size:18px;
+}
+
+.timelineContent p{
+margin:5px 0 0;
+font-size:14px;
+color:#f3c6d5;
+}
+
+/* CELULAR */
+
+@media screen and (max-width:700px){
+
+.timeline::after{
+left:20px;
+}
+
+.timelineItem{
+width:100%;
+padding-left:60px;
+padding-right:25px;
+}
+
+.timelineItem::after{
+left:10px;
+}
+
+.left, .right{
+left:0;
+text-align:left;
+}
+
+.timelineContent{
+flex-direction:row;
+}
+
+}
+
+/* Nova tela de transição pós-vídeo */
+#transicao-pos-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: none; /* Começa escondido */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 11000; /* Fica acima de tudo */
+    transition: opacity 1s ease;
+}
+
+.spinner-simples {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-left-color: #9333ea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Tela do Vídeo */
+#tela-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: none; /* Começa escondido */
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+#meuVideo {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Botão para pular o vídeo (opcional) */
+.btn-pular {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Container de Entrada (Sobreposição) */
+.overlay-tela {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: flex; /* Mágica começa aqui */
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    z-index: 9999;
+}
+
+/* Caixa de Login */
+.login-box {
+    background: transparent; /* Mantém o fundo preto */
+    text-align: center; /* Centraliza todos os textos e inputs dentro */
+    display: flex; /* Alinha os elementos internos em coluna centralizada */
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 320px;
+}
+
+/* SUA NOVA FOTO DE PERFIL (No lugar do boneco) */
+.user-img {
+    width: 200px;
+    height: 200px;
+    background-image: url('fotoPerfil.jpeg'); /* COLoque o nome do seu arquivo de foto aqui! */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 4px solid white; /* Borda branca estilosa */
+    margin-bottom: 25px; /* Espaço para o texto */
+    box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+}
+
+/* Texto e Inputs Centralizados */
+.login-box h3, .login-box p {
+    color: white;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.input-senha {
+    width: 100%; /* Ocupa toda a largura da caixa de login */
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.dica-senha {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Botão Entrar Centralizado e Violeta */
+.btn-entrar {
+    margin-top: 25px;
+    padding: 12px 40px;
+    font-size: 16px;
+    background: #9333ea; /* Roxo vibrante */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+    transition: 0.2s;
+}
+
+.btn-entrar:hover { transform: scale(1.05); }
+
+/* Barra de Loading */
+.loader-container {
+    width: 200px;
+    height: 4px;
+    background: #333;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loader-bar {
+    width: 0%;
+    height: 100%;
+    background: #bc1854;
+    transition: width 0.3s;
+}
+
+#conteudo-principal {
+    display: none; /* Só aparece no final */
+}
+
+    /* Efeito de flutuar nos cards do cronômetro e no player */
+.box, .music, .loveBtn, .timelineItem {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.box:hover, .music:hover, .loveBtn:hover, .timelineItem:hover {
+    transform: translateY(-10px); /* Levanta o elemento */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Aumenta a sombra */
+}
+
+/* Garante que o efeito funcione no toque do celular */
+.box:active, .music:active {
+    transform: translateY(-5px) scale(1.02);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(#3b0a2a, #1a0614);
+    color: white;
+    text-align: center;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
+}
+
+/* HEADER RESPONSIVO */
+.header {
+background: linear-gradient(135deg,#9333ea,#db2777);
+box-shadow:0 140px 150px rgba(0,0,0,0.4);
+}
+
+.header{
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(-20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.container {
+    padding: 15px;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Centraliza e ajusta a foto do álbum como Retângulo */
+.albumCover {
+    width: 90%;             /* Ocupa quase toda a largura no celular */
+    max-width: 400px;       /* No PC, ele não passa de 400px para não ficar gigante */
+    height: 250px;          /* Altura aumentada para manter o formato retangular */
+    object-fit: cover;      /* Corta a imagem inteligentemente para preencher o espaço */
+    border-radius: 20px;    /* Bordas arredondadas combinando com o site */
+    margin: 0 auto 20px auto; /* Centraliza e dá espaço para o título da música */
+    display: block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Sombra um pouco mais forte para destaque */
+}
+
+/* Garante que o bloco de música acomode o novo tamanho */
+.music {
+    background: #4a1230; /* Cor escura estilo Spotify */
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 550px;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: left; /* Título alinhado à esquerda */
+}
+/* Esconde o player padrão do navegador */
+audio { display: none; }
+
+/* Controles Customizados */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.play-trigger {
+    background: white;
+    color: #4a1230;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 22px;
+    justify-content: center;
+}
+
+.control-btn:hover { transform: scale(1.1); }
+
+/* Barra de Progresso Estilo Spotify */
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: white;
+    border-radius: 2px;
+}
+
+/* A Foto do Álbum (Retângulo grande) */
+.albumCover {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Mantém um quadrado perfeito ou mude para 4/5 para retângulo */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Título e Artista */
+.musicTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.musicArtist {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+}
+
+/* Player de Áudio nativo mais discreto */
+audio {
+    width: 100%;
+    height: 35px;
+    filter: invert(100%) hue-rotate(180deg) brightness(1.5); /* Deixa o player escuro */
+}
+
+/* AJUSTE DAS SETAS DO SLIDER (Para ficarem nas laterais da foto) */
+/* Container do Slider 3D */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Altura do slider */
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; /* Cria o efeito 3D */
+    overflow: visible; /* Importante para ver as fotos dos lados */
+}
+
+.slides-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.slide-item {
+    position: absolute;
+    width: 220px; /* Largura da foto central */
+    height: 100%;
+    left: 50%;
+    margin-left: -110px; /* Metade da largura para centralizar */
+    transition: all 0.5s ease;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Foto no Centro */
+.slide-item.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.1);
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* Foto da Esquerda */
+.slide-item.prev-slide {
+    opacity: 0.6;
+    transform: translate3d(-120px, 0, -150px) rotateY(20deg);
+    z-index: 5;
+    display: block;
+}
+
+/* Foto da Direita */
+.slide-item.next-slide {
+    opacity: 0.6;
+    transform: translate3d(120px, 0, -150px) rotateY(-20deg);
+    z-index: 5;
+    display: block;
+}
+
+/* Estilo das Setas para não sumirem */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100; /* Garante que fiquem acima de tudo */
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.prev { left: -10px; }
+.next { right: -10px; }
+
+.prev:hover, .next:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+@keyframes scrollMusic {
+    0% { transform: translateX(80%); }
+    100% { transform: translateX(-80%); }
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.slides img {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* TIMER (CORRIGIDO PARA CELULAR) */
+.timer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas no PC */
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.box {
+    background: linear-gradient(145deg, #4a1230, #2a0a1a);
+    padding: 15px 5px;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.label {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* TIMELINE (CORRIGIDA) */
+.timeline {
+    margin: 30px 10px;
+    padding: 20px 15px;
+    background: #2a0a1a; 
+    border-radius: 20px;
+}
+
+.timelineItem {
+    display: flex;
+    flex-direction: row; /* Lado a lado no PC */
+    align-items: center;
+    gap: 15px;
+    background: #4a1230;
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.timelineItem img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* CARTA */
+/* Container do Envelope */
+/* Container do Envelope */
+.envelope-wrapper {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    background: #7e22ce; 
+    margin: 50px auto;
+    display: none; 
+    cursor: pointer;
+    perspective: 1500px; /* Aumentado para melhor efeito 3D */
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 100;
+}
+
+/* A Folha A4 Deitada */
+.envelope-paper {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 85%;
+    background: #fdfdfd; /* Cor de papel levemente off-white */
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    overflow: hidden; /* Esconde o conteúdo enquanto fechado */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* EFEITO DE ABRIR E "DEITAR" A FOLHA */
+.envelope-wrapper.aberto .envelope-paper {
+    width: 95vw; /* Ocupa quase a largura toda da tela */
+    max-width: 600px; /* Limite para não ficar gigante no PC */
+    height: auto;
+    min-height: 400px;
+    bottom: 20px;
+    z-index: 200;
+    overflow-y: auto;
+    transform: translateX(-50%) translateY(-20px); /* Sobe um pouco */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Estilizando o Conteúdo Interno (Foto + Texto) */
+.paper-content {
+    display: flex;
+    flex-direction: column; /* Padrão celular: um embaixo do outro */
+    align-items: center;
+    gap: 20px;
+}
+
+/* Se a tela for maior (PC/Tablet), eles ficam lado a lado como uma folha deitada */
+@media (min-width: 600px) {
+    .paper-content {
+        flex-direction: row; 
+        align-items: flex-start;
+    }
+    .foto-interna {
+        width: 45% !important;
+    }
+    .texto-carta {
+        width: 50%;
+    }
+}
+
+.foto-interna {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.texto-carta {
+    color: #333;
+    font-family: 'Georgia', serif; /* Fonte que parece carta */
+    line-height: 1.6;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* Mantendo a Aba e Frente (mesmo código anterior) */
+.envelope-flap {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #9333ea;
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    z-index: 4; transform-origin: top; transition: 0.4s;
+}
+.envelope-front {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+    background: #9333ea;
+    clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+    z-index: 3;
+}
+.envelope-wrapper.aberto .envelope-flap { transform: rotateX(180deg); z-index: 1; }
+
+/* Estilo do conteúdo interno da carta */
+.envelope-paper h2 { color: #4a1230; font-size: 1.2rem; }
+.envelope-paper p { color: #333; text-align: left; font-size: 14px; line-height: 1.5; }
+.foto-interna { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+
+/* MEDIA QUERIES PARA CELULAR */
+@media (max-width: 480px) {
+    .timer {
+        grid-template-columns: repeat(2, 1fr); /* No celular pequeno, fica em 2 colunas */
+    }
+    
+    .timelineItem {
+        flex-direction: column; /* Foto em cima do texto no celular */
+        text-align: center;
+    }
+    
+    .timelineText {
+        text-align: center;
+    }
+
+    .timelineItem img {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* CORAÇÕES E ANIMAÇÃO */
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    animation: subir linear infinite;
+}
+
+@keyframes subir {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+.loveBtn {
+    margin-top: 25px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: #9333ea;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+}
+</style>
+
+</head>
+
+<script>
+window.onload = function() {
+    // --- ELEMENTOS ---
+    const items = document.querySelectorAll('.slide-item');
+    const startDate = new Date("2022-10-07T00:00:00");
+    
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    // --- LÓGICA DO SLIDER 3D ---
+    function atualizarSlider3D() {
+        if (items.length === 0) return;
+        items.forEach((item, index) => {
+            item.classList.remove('active', 'prev-slide', 'next-slide');
+            
+            if (index === currentIndex) {
+                item.classList.add('active');
+            } else if (index === (currentIndex - 1 + items.length) % items.length) {
+                item.classList.add('prev-slide');
+            } else if (index === (currentIndex + 1) % items.length) {
+                item.classList.add('next-slide');
+            }
+        });
+    }
+
+    // Função global para as setas (onclick do HTML)
+    window.manualMudarSlide = function(n) {
+        clearInterval(autoPlayInterval);
+        currentIndex = (currentIndex + n + items.length) % items.length;
+        atualizarSlider3D();
+        iniciarAutoplay();
+    };
+
+    function iniciarAutoplay() {
+        autoPlayInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % items.length;
+            atualizarSlider3D();
+        }, 3000);
+    }
+
+    // Inicializa o slider
+    if (items.length > 0) {
+        atualizarSlider3D();
+        iniciarAutoplay();
+    }
+
+    // --- CRONÔMETRO (CORRIGIDO PARA 3 ANOS+) ---
+    function updateTimer() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+        const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+        const minutes = Math.floor(diff / (1000 * 60)) % 60;
+        const seconds = Math.floor(diff / 1000) % 60;
+
+        if(document.getElementById("years")) {
+            document.getElementById("years").innerText = years;
+            document.getElementById("months").innerText = months;
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // --- PLAYER DE MÚSICA ---
+    window.togglePlay = function() {
+        if (audio.paused) {
+            audio.play();
+            playBtn.innerHTML = "⏸";
+        } else {
+            audio.pause();
+            playBtn.innerHTML = "▶";
+        }
+    };
+
+    if (audio) {
+        audio.addEventListener("timeupdate", () => {
+            if (audio.duration) {
+                const percentage = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percentage + "%";
+            }
+        });
+    }
+
+    // --- OUTROS ---
+   // 1. Faz o envelope aparecer na tela
+window.mostrarEnvelope = function() {
+    const envelope = document.getElementById("envelope");
+    const btn = document.getElementById("btnMensagem");
+    
+    envelope.style.display = "block";
+    btn.style.display = "none"; // Some com o botão após clicar
+    envelope.scrollIntoView({ behavior: 'smooth' });
+};
+
+// 2. Abre o envelope e desdobra o papel
+window.toggleCarta = function() {
+    const envelope = document.getElementById("envelope");
+    envelope.classList.toggle("aberto");
+};
+
+    // Corações
+    setInterval(function criarCoracao() {
+        const heartContainer = document.querySelector(".hearts");
+        if(!heartContainer) return;
+        const coracao = document.createElement("div");
+        coracao.classList.add("heart");
+        coracao.innerHTML = "❤️";
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.fontSize = (Math.random() * 20 + 20) + "px";
+        coracao.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        heartContainer.appendChild(coracao);
+        setTimeout(() => coracao.remove(), 7000);
+    }, 450);
+
+    // Autoplay da música no primeiro toque
+    document.addEventListener("click", () => {
+        if (audio && audio.paused && audio.currentTime === 0) {
+            audio.play();
+            if(playBtn) playBtn.innerHTML = "⏸";
+        }
+    }, { once: true });
+};
+</script>
+
+<body>
+
+<div id="tela-login" class="overlay-tela">
+    <div class="login-box">
+        <div class="user-img"></div> 
+        
+        <h3>Olá, Emily! ❤️</h3>
+        <p style="font-size: 14px; color: #ccc; line-height: 1.4; margin-bottom: 15px;">
+            Gustavo criou isso aqui para celebrar o seu aniversario!.<br>
+            Ele dedicou tempo e estudo para fazer cada detalhe!<br>
+            Espero que você goste.
+        </p>
+        
+        <input type="password" id="inputSenha" class="input-senha" placeholder="Digite a senha...">
+        <p class="dica-senha">Dica: Data do nosso início (DDMMAAAA)</p>
+        
+        <button onclick="verificarSenha()" class="btn-entrar">
+            Entrar
+        </button>
+    </div>
+</div>
+
+<div id="tela-aviso" class="overlay-tela" style="display: none;">
+    <div class="login-box" style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
+        <h2 style="color: #9333ea; margin-bottom: 15px;">Aguarde um instante...</h2>
+        <p style="font-size: 16px; line-height: 1.6; color: white;">
+            Antes de prosseguir, prepare o coração. <br>
+            Preparei algo muito especial para você assistir. ❤️
+        </p>
+        <p style="font-size: 13px; color: #aaa; margin-top: 10px;">(Certifique-se de que o som está ligado!)</p>
+        
+        <button onclick="irParaLoading()" class="btn-entrar" style="margin-top: 25px;">
+            Estou pronta ✨
+        </button>
+    </div>
+</div>
+
+<div id="tela-loading" class="overlay-tela" style="display: none;">
+    <p id="status-loading">Validando acesso...</p>
+    <div class="loader-container">
+        <div class="loader-bar" id="barra-progresso"></div>
+    </div>
+</div>
+
+<div id="tela-video" class="overlay-tela">
+    <video id="meuVideo" playsinline>
+        <source src="seu-video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
+    <button class="btn-pular" onclick="finalizarVideo()">Pular Vídeo ❯</button>
+</div>
+
+<div id="transicao-pos-video" class="overlay-tela">
+    <div class="spinner-simples"></div>
+    <p style="color: white; font-style: italic; letter-spacing: 2px;">Abrindo nosso mundo...</p>
+</div>
+
+<div id="conteudo-principal" style="display: none;">
+    <div class="hearts"></div>
+
+    <div class="header">
+        Para a mulher incrível que tenho a sorte de amar 🤍
+    </div>
+
+    <div class="container">
+        <div class="music">
+            <img src="album.jpeg" class="albumCover">
+            <div class="musicTitle">Mirrors</div>
+            <div class="musicArtist">Justin Timberlake</div>
+
+            <div class="progress-container" id="progressArea" style="background: rgba(255,255,255,0.2); height: 4px; cursor: pointer; margin-top: 15px;">
+                <div class="progress-bar" id="progressBar" style="background: white; width: 0%; height: 100%;"></div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" onclick="manualMudarSlide(-1)">⏮</button>
+                <button class="control-btn play-trigger" id="playBtn" onclick="togglePlay()">▶</button>
+                <button class="control-btn" onclick="manualMudarSlide(1)">⏭</button>
+            </div>
+
+            <audio id="musica" src="musica.mp3" preload="auto"></audio>
+        </div>
+
+        </div> 
+        </div>
+        
+        <script>
+function irParaLogin() {
+    document.getElementById('tela-inicio').style.display = 'none';
+    document.getElementById('tela-login').style.display = 'flex';
+}
+
+// 1. Quando acerta a senha, vai para o AVISO
+function verificarSenha() {
+    const senha = document.getElementById('inputSenha').value;
+    const senhaCorreta = "07102022"; 
+
+    if (senha === senhaCorreta) {
+        document.getElementById('tela-login').style.display = 'none';
+        document.getElementById('tela-aviso').style.display = 'flex'; // Abre o aviso
+    } else {
+        alert("Senha incorreta! Tente a data do nosso início.");
+    }
+}
+
+// 2. Quando clica no botão do aviso, inicia o LOADING
+function irParaLoading() {
+    document.getElementById('tela-aviso').style.display = 'none';
+    document.getElementById('tela-loading').style.display = 'flex';
+    iniciarLoading(); // Chama a função que você já tem
+}
+
+// 3. A função de loading continua igual, mas garante que o vídeo venha depois
+
+
+function iniciarLoading() {
+    let progresso = 0;
+    const barra = document.getElementById('barra-progresso');
+    const status = document.getElementById('status-loading');
+    
+    const frases = ["Carregando memórias...", "Sintonizando amor...", "Quase pronto!"];
+    
+    const intervalo = setInterval(() => {
+        progresso += Math.random() * 20;
+        if (progresso >= 100) {
+            progresso = 100;
+            clearInterval(intervalo);
+            
+            setTimeout(() => {
+                // 1. Esconde o loading
+                document.getElementById('tela-loading').style.display = 'none';
+                
+                // 2. Pausa a música do site (garantia)
+                const musicaSite = document.getElementById('musica');
+                if(musicaSite) musicaSite.pause();
+
+                // 3. Mostra e dá play no vídeo
+                const telaVideo = document.getElementById('tela-video');
+                const videoElement = document.getElementById('meuVideo');
+                
+                telaVideo.style.display = 'flex';
+                videoElement.play(); 
+
+                // Quando o vídeo acabar sozinho, chama a função de finalizar
+                videoElement.onended = function() {
+                    finalizarVideo();
+                };
+            }, 800);
+        }
+        
+        barra.style.width = progresso + "%";
+        if(progresso > 30) status.innerText = frases[0];
+        if(progresso > 60) status.innerText = frases[1];
+        if(progresso > 85) status.innerText = frases[2];
+    }, 400);
+}
+
+// Função para finalmente mostrar o site
+function finalizarVideo() {
+    const telaVideo = document.getElementById('tela-video');
+    const videoElement = document.getElementById('meuVideo');
+    const telaTransicao = document.getElementById('transicao-pos-video');
+    const conteudoPrincipal = document.getElementById('conteudo-principal');
+    const musicaSite = document.getElementById('musica');
+    const playBtn = document.getElementById('playBtn');
+
+    // 1. Para o vídeo e esconde a tela dele
+    videoElement.pause();
+    telaVideo.style.display = 'none';
+
+    // 2. Mostra a tela de transição (Loading rápido)
+    telaTransicao.style.display = 'flex';
+
+    // 3. Aguarda 2.5 segundos para dar o efeito de carregamento
+    setTimeout(() => {
+        // Começa a sumir com a tela de transição (Fade Out)
+        telaTransicao.style.opacity = '0';
+
+        setTimeout(() => {
+            telaTransicao.style.display = 'none';
+            // Revela o site
+            conteudoPrincipal.style.display = 'block';
+
+            // 4. Inicia a música do site
+            if(musicaSite) {
+                musicaSite.play().then(() => {
+                    if(playBtn) playBtn.innerHTML = "⏸";
+                }).catch(e => console.log("Erro ao tocar música:", e));
+            }
+        }, 1000); // Tempo para o Fade Out terminar
+    }, 2500); // Tempo que ela fica vendo o "Abrindo nosso mundo..."
+}
+</script>
+
+<div class="slider">
+<button class="prev" onclick="manualMudarSlide(-1)">❮</button>
+<button class="next" onclick="manualMudarSlide(1)">❯</button>
+
+    <div class="slides-container" id="3d-slides">
+        <img src="foto1.jpeg" class="slide-item">
+        <img src="foto2.jpeg" class="slide-item">
+        <img src="foto3.jpeg" class="slide-item">
+        <img src="foto4.jpeg" class="slide-item">
+        <img src="foto5.jpeg" class="slide-item">
+        <img src="foto6.jpeg" class="slide-item">
+        <img src="foto7.jpeg" class="slide-item">
+    </div>
+</div>
+
+<div class="dots">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<h2>Andre Gustavo e Emily</h2>
+
+<p>Juntos desde 07/10/2022</p>
+
+<div class="timer">
+
+<div class="box">
+<span id="years"></span>
+<div class="label">Anos</div>
+</div>
+
+<div class="box">
+<span id="months"></span>
+<div class="label">Meses</div>
+</div>
+
+<div class="box">
+<span id="days"></span>
+<div class="label">Dias</div>
+</div>
+
+<div class="box">
+<span id="hours"></span>
+<div class="label">Horas</div>
+</div>
+
+<div class="box">
+<span id="minutes"></span>
+<div class="label">Minutos</div>
+</div>
+
+<div class="box">
+<span id="seconds"></span>
+<div class="label">Segundos</div>
+</div>
+
+</div>
+
+<!-- BOTÃO -->
+
+
+<!-- CARTA -->
+
+<button onclick="mostrarEnvelope()" id="btnMensagem" class="loveBtn">
+    Uma mensagem para você 💌
+</button>
+
+<div id="envelope" class="envelope-wrapper" onclick="toggleCarta()">
+    <div class="envelope-flap"></div>
+    <div class="envelope-front"></div>
+    
+    <div class="envelope-paper">
+        <img src="fotoCarta.jpeg" class="foto-interna">
+        <h2>Para você, Meu Amor! 🤍</h2>
+        <p>
+         Minha vida,
+
+Hoje você faz 20 anos… e eu só consigo pensar em como sou sortudo por ter você na minha vida.
+
+Você é uma das pessoas mais incríveis que eu já conheci. Seu jeito, seu sorriso, sua forma de ver o mundo… tudo em você me faz ter ainda mais certeza de que eu escolhi a pessoa certa para amar.
+
+Eu sei que a distância às vezes aperta o coração. Tem dias que tudo que eu queria era simplesmente poder te abraçar, ficar do seu lado sem pressa, ouvir sua risada de perto. Mas mesmo longe, você continua sendo a parte mais importante da minha vida.
+
+Você me faz bem, me faz querer ser melhor, me faz acreditar que tudo vale a pena quando é com você.
+
+Hoje, no seu aniversário, eu só quero que você saiba o quanto você é especial pra mim. Que você nunca esqueça o quanto é linda, forte, inteligente e maravilhosa.
+
+Eu tenho muito orgulho da mulher que você é… e ainda mais orgulho de poder caminhar ao seu lado.
+
+Feliz 20 anos, meu amor.
+Que sua vida seja cheia de felicidade, sonhos realizados e momentos lindos… e se depender de mim, eu quero estar ao seu lado em todos eles.
+
+Eu te amo muito. 🤍
+
+        </p>
+        <p style="text-align: right; font-weight: bold;">Com amor, Do seu Gugu.</p>
+    </div>
+</div>
+
+
+</div>
+
+</div>
+
+<script>
+window.mostrarEnvelope = function() {
+    const envelope = document.getElementById("envelope");
+    const btn = document.getElementById("btnMensagem");
+    if(envelope) envelope.style.display = "block";
+    if(btn) btn.style.display = "none";
+    envelope.scrollIntoView({ behavior: 'smooth' });
+};
+
+// Selecionando os elementos novamente para garantir
+const audio = document.getElementById("musica");
+const playBtn = document.getElementById("playBtn");
+const progressBar = document.getElementById("progressBar");
+
+// Variável para saber se já destravamos o áudio
+let audioDestravado = false;
+
+// FUNÇÃO MÁGICA: Toca ao encostar em qualquer lugar da tela pela primeira vez
+document.addEventListener("click", function() {
+    if (!audioDestravado) {
+        audio.play().then(() => {
+            playBtn.innerHTML = "⏸"; // Muda o botão para pause
+            audioDestravado = true;  // Marca como destravado para não reiniciar a cada clique
+        }).catch(error => {
+            console.log("O navegador ainda bloqueou o áudio:", error);
+        });
+    }
+}, { once: true }); // O '{ once: true }' faz esse evento rodar só UMA vez
+
+// Função do Botão Play/Pause manual
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        playBtn.innerHTML = "⏸";
+    } else {
+        audio.pause();
+        playBtn.innerHTML = "▶";
+    }
+}
+
+// Atualização da barrinha (Verifique se isso já está no seu código)
+audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = percentage + "%";
+    }
+});
+</script>
+
+<div class="timelineSection">
+
+<h2 class="timelineTitle">Nossa História ❤️</h2>
+
+<div class="timeline">
+
+<div class="timelineItem">
+<img src="foto1.jpeg">
+<div class="timelineText">
+<h3>28/01/2019</h3>
+<p>O dia em que nosso amor começou.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="foto2.jpeg">
+<div class="timelineText">
+<h3>Primeiro encontro depois de anos longe</h3>
+<p>Um dia inesquecível para nós dois.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="foto3.jpeg">
+<div class="timelineText">
+<h3>Primeira vinda para o RJ</h3>
+<p>Momentos incríveis que vivemos juntos.</p>
+</div>
+</div>
+
+<div class="timelineItem">
+<img src="foto4.jpeg">
+<div class="timelineText">
+<h3>Onde meu coração quer chegar</h3>
+<p>Nossa história só está começando, e meu capítulo favorito será aquele em que casamos.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
