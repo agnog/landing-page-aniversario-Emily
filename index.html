@@ -28,8 +28,6 @@ width:min(1400px, 92%);
 margin:auto;
 }
 
-/* LINHA CENTRAL */
-
 .timeline::after{
 content:"";
 position:absolute;
@@ -46,8 +44,6 @@ border-radius:10px;
 max-width:500px;
 }
 
-/* ITEM */
-
 .timelineItem{
 padding:20px 40px;
 position:relative;
@@ -63,8 +59,6 @@ max-width:650px;
 max-width:1400px;
 margin:auto;
 }
-
-/* PONTO */
 
 .timelineItem::after{
 content:"";
@@ -116,14 +110,10 @@ box-sizing:border-box;
 max-width:500px;
 }
 
-/* ESQUERDA */
-
 .left{
 left:0;
 text-align:right;
 }
-
-/* DIREITA */
 
 .right{
 left:50%;
@@ -132,8 +122,6 @@ left:50%;
 .right::after{
 left:-10px;
 }
-
-/* CARD */
 
 .timelineContent{
 background:#5a0f2e;
@@ -150,16 +138,12 @@ transition:0.3s;
 transform:scale(1.05);
 }
 
-/* FOTO */
-
 .timelineContent img{
 width:70px;
 height:70px;
 border-radius:15px;
 object-fit:cover;
 }
-
-/* TEXTO */
 
 .timelineContent h3{
 margin:0;
@@ -172,7 +156,6 @@ font-size:14px;
 color:#f3c6d5;
 }
 
-/* CELULAR */
 
 @media screen and (max-width:700px){
 
@@ -224,17 +207,16 @@ box-shadow:0 0 10px #ff4d8d;
 left:-8px;
 }
 
-/* Nova tela de transição pós-vídeo */
 #transicao-pos-video {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: black;
-    display: none; /* Começa escondido */
+    display: none; 
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 11000; /* Fica acima de tudo */
+    z-index: 11000; 
     transition: opacity 1s ease;
 }
 
@@ -252,13 +234,12 @@ left:-8px;
     to { transform: rotate(360deg); }
 }
 
-/* Tela do Vídeo */
 #tela-video {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: black;
-    display: none; /* Começa escondido */
+    display: none; 
     align-items: center;
     justify-content: center;
     z-index: 10000;
@@ -271,58 +252,66 @@ left:-8px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* Botão para pular o vídeo (opcional) */
-.btn-pular {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
+.btn-pular{
+position:absolute;
+bottom:20px;
+right:20px;
+background:rgba(0,0,0,0.6);
+color:white;
+border:1px solid white;
+padding:10px 18px;
+border-radius:25px;
+cursor:pointer;
+font-size:14px;
+z-index:10001;
 }
 
-/* Container de Entrada (Sobreposição) */
+@media (max-width:600px){
+
+.btn-pular{
+bottom:40px;
+right:50%;
+transform:translateX(50%);
+font-size:15px;
+padding:12px 20px;
+}
+
+}
+
 .overlay-tela {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: black;
-    display: flex; /* Mágica começa aqui */
+    display: flex; 
     flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;
+    justify-content: center; 
     z-index: 9999;
 }
 
-/* Caixa de Login */
 .login-box {
-    background: transparent; /* Mantém o fundo preto */
-    text-align: center; /* Centraliza todos os textos e inputs dentro */
-    display: flex; /* Alinha os elementos internos em coluna centralizada */
+    background: transparent; 
+    text-align: center; 
+    display: flex; 
     flex-direction: column;
     align-items: center;
     width: 90%;
     max-width: 320px;
 }
 
-/* SUA NOVA FOTO DE PERFIL (No lugar do boneco) */
 .user-img {
     width: 200px;
     height: 200px;
-    background-image: url('fotoPerfil.jpeg'); /* COLoque o nome do seu arquivo de foto aqui! */
+    background-image: url('fotoPerfil.jpeg'); 
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    border: 4px solid white; /* Borda branca estilosa */
-    margin-bottom: 25px; /* Espaço para o texto */
+    border: 4px solid white; 
+    margin-bottom: 25px; 
     box-shadow: 0 8px 25px rgba(255,255,255,0.2);
 }
 
-/* Texto e Inputs Centralizados */
 .login-box h3, .login-box p {
     color: white;
     margin: 5px 0;
@@ -330,7 +319,7 @@ left:-8px;
 }
 
 .input-senha {
-    width: 100%; /* Ocupa toda a largura da caixa de login */
+    width: 100%; 
     padding: 12px;
     border-radius: 5px;
     border: none;
@@ -346,12 +335,11 @@ left:-8px;
     font-style: italic;
 }
 
-/* Botão Entrar Centralizado e Violeta */
 .btn-entrar {
     margin-top: 25px;
     padding: 12px 40px;
     font-size: 16px;
-    background: #9333ea; /* Roxo vibrante */
+    background: #9333ea; 
     color: white;
     border: none;
     border-radius: 50px;
@@ -363,7 +351,6 @@ left:-8px;
 
 .btn-entrar:hover { transform: scale(1.05); }
 
-/* Barra de Loading */
 .loader-container {
     width: 200px;
     height: 4px;
@@ -381,21 +368,19 @@ left:-8px;
 }
 
 #conteudo-principal {
-    display: none; /* Só aparece no final */
+    display: none; 
 }
 
-    /* Efeito de flutuar nos cards do cronômetro e no player */
 .box, .music, .loveBtn, .timelineItem {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
 .box:hover, .music:hover, .loveBtn:hover, .timelineItem:hover {
-    transform: translateY(-10px); /* Levanta o elemento */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Aumenta a sombra */
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); 
 }
 
-/* Garante que o efeito funcione no toque do celular */
 .box:active, .music:active {
     transform: translateY(-5px) scale(1.02);
 }
@@ -406,10 +391,9 @@ body {
     background: linear-gradient(#3b0a2a, #1a0614);
     color: white;
     text-align: center;
-    overflow-x: hidden; /* Evita rolagem lateral indesejada */
+    overflow-x: hidden; 
 }
 
-/* HEADER RESPONSIVO */
 .header {
 background: linear-gradient(135deg,#9333ea,#db2777);
 box-shadow:0 140px 150px rgba(0,0,0,0.4);
@@ -436,32 +420,29 @@ transform:translateY(0);
     margin: auto;
 }
 
-/* Centraliza e ajusta a foto do álbum como Retângulo */
 .albumCover {
-    width: 90%;             /* Ocupa quase toda a largura no celular */
-    max-width: 400px;       /* No PC, ele não passa de 400px para não ficar gigante */
-    height: 250px;          /* Altura aumentada para manter o formato retangular */
-    object-fit: cover;      /* Corta a imagem inteligentemente para preencher o espaço */
-    border-radius: 20px;    /* Bordas arredondadas combinando com o site */
-    margin: 0 auto 20px auto; /* Centraliza e dá espaço para o título da música */
+    width: 90%;            
+    max-width: 400px;       
+    height: 250px;          
+    object-fit: cover;      
+    border-radius: 20px;    
+    margin: 0 auto 20px auto; 
     display: block;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Sombra um pouco mais forte para destaque */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4); 
 }
 
-/* Garante que o bloco de música acomode o novo tamanho */
 .music {
-    background: #4a1230; /* Cor escura estilo Spotify */
+    background: #4a1230;
     padding: 20px;
     border-radius: 20px;
     max-width: 550px;
     margin: 0 auto 30px auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    text-align: left; /* Título alinhado à esquerda */
+    text-align: left; 
 }
-/* Esconde o player padrão do navegador */
+
 audio { display: none; }
 
-/* Controles Customizados */
 .controls {
     display: flex;
     align-items: center;
@@ -493,7 +474,6 @@ audio { display: none; }
 
 .control-btn:hover { transform: scale(1.1); }
 
-/* Barra de Progresso Estilo Spotify */
 .progress-container {
     width: 100%;
     height: 4px;
@@ -510,17 +490,15 @@ audio { display: none; }
     border-radius: 2px;
 }
 
-/* A Foto do Álbum (Retângulo grande) */
 .albumCover {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Mantém um quadrado perfeito ou mude para 4/5 para retângulo */
+    aspect-ratio: 1 / 1; 
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 15px;
     display: block;
 }
 
-/* Título e Artista */
 .musicTitle {
     font-size: 20px;
     font-weight: bold;
@@ -536,25 +514,22 @@ audio { display: none; }
     margin-bottom: 15px;
 }
 
-/* Player de Áudio nativo mais discreto */
 audio {
     width: 100%;
     height: 35px;
-    filter: invert(100%) hue-rotate(180deg) brightness(1.5); /* Deixa o player escuro */
+    filter: invert(100%) hue-rotate(180deg) brightness(1.5); 
 }
 
-/* AJUSTE DAS SETAS DO SLIDER (Para ficarem nas laterais da foto) */
-/* Container do Slider 3D */
 .slider {
     position: relative;
     width: 100%;
-    height: 300px; /* Altura do slider */
+    height: 300px; 
     margin: 30px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px; /* Cria o efeito 3D */
-    overflow: visible; /* Importante para ver as fotos dos lados */
+    perspective: 1000px; 
+    overflow: visible; 
 }
 
 .slides-container {
@@ -566,10 +541,10 @@ audio {
 
 .slide-item {
     position: absolute;
-    width: 220px; /* Largura da foto central */
+    width: 220px; 
     height: 100%;
     left: 50%;
-    margin-left: -110px; /* Metade da largura para centralizar */
+    margin-left: -110px; 
     transition: all 0.5s ease;
     border-radius: 15px;
     object-fit: cover;
@@ -579,7 +554,6 @@ audio {
     z-index: 0;
 }
 
-/* Foto no Centro */
 .slide-item.active {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1.1);
@@ -587,7 +561,6 @@ audio {
     pointer-events: auto;
 }
 
-/* Foto da Esquerda */
 .slide-item.prev-slide {
     opacity: 0.6;
     transform: translate3d(-120px, 0, -150px) rotateY(20deg);
@@ -595,7 +568,6 @@ audio {
     display: block;
 }
 
-/* Foto da Direita */
 .slide-item.next-slide {
     opacity: 0.6;
     transform: translate3d(120px, 0, -150px) rotateY(-20deg);
@@ -603,7 +575,6 @@ audio {
     display: block;
 }
 
-/* Estilo das Setas para não sumirem */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -616,7 +587,7 @@ audio {
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 100; /* Garante que fiquem acima de tudo */
+    z-index: 100; 
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -637,7 +608,6 @@ audio {
     100% { transform: translateX(-80%); }
 }
 
-/* SLIDER */
 .slider {
     position: relative;
     width: 100%;
@@ -658,10 +628,9 @@ audio {
     object-fit: cover;
 }
 
-/* TIMER (CORRIGIDO PARA CELULAR) */
 .timer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas no PC */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 10px;
     margin: 20px auto;
     max-width: 400px;
@@ -682,7 +651,6 @@ audio {
     margin-top: 5px;
 }
 
-/* TIMELINE (CORRIGIDA) */
 .timeline {
     margin: 30px 10px;
     padding: 20px 15px;
@@ -692,7 +660,7 @@ audio {
 
 .timelineItem {
     display: flex;
-    flex-direction: row; /* Lado a lado no PC */
+    flex-direction: row; 
     align-items: center;
     gap: 15px;
     background: #4a1230;
@@ -708,9 +676,6 @@ audio {
     border-radius: 12px;
 }
 
-/* CARTA */
-/* Container do Envelope */
-/* Container do Envelope */
 .envelope-wrapper {
     position: relative;
     width: 320px;
@@ -719,13 +684,12 @@ audio {
     margin: 50px auto;
     display: none; 
     cursor: pointer;
-    perspective: 1500px; /* Aumentado para melhor efeito 3D */
+    perspective: 1500px; 
     border-radius: 0 0 10px 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 100;
 }
 
-/* A Folha A4 Deitada */
 .envelope-paper {
     position: absolute;
     bottom: 5px;
@@ -733,38 +697,35 @@ audio {
     transform: translateX(-50%);
     width: 90%;
     height: 85%;
-    background: #fdfdfd; /* Cor de papel levemente off-white */
+    background: #fdfdfd; 
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 2px;
-    overflow: hidden; /* Esconde o conteúdo enquanto fechado */
+    overflow: hidden; 
     box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* EFEITO DE ABRIR E "DEITAR" A FOLHA */
 .envelope-wrapper.aberto .envelope-paper {
-    width: 95vw; /* Ocupa quase a largura toda da tela */
-    max-width: 600px; /* Limite para não ficar gigante no PC */
+    width: 95vw; 
+    max-width: 600px; 
     height: auto;
     min-height: 400px;
     bottom: 20px;
     z-index: 200;
     overflow-y: auto;
-    transform: translateX(-50%) translateY(-20px); /* Sobe um pouco */
+    transform: translateX(-50%) translateY(-20px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* Estilizando o Conteúdo Interno (Foto + Texto) */
 .paper-content {
     display: flex;
-    flex-direction: column; /* Padrão celular: um embaixo do outro */
+    flex-direction: column; 
     align-items: center;
     gap: 20px;
 }
 
-/* Se a tela for maior (PC/Tablet), eles ficam lado a lado como uma folha deitada */
 @media (min-width: 600px) {
     .paper-content {
         flex-direction: row; 
@@ -788,13 +749,12 @@ audio {
 
 .texto-carta {
     color: #333;
-    font-family: 'Georgia', serif; /* Fonte que parece carta */
+    font-family: 'Georgia', serif; 
     line-height: 1.6;
     font-size: 14px;
     text-align: left;
 }
 
-/* Mantendo a Aba e Frente (mesmo código anterior) */
 .envelope-flap {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -810,19 +770,19 @@ audio {
 }
 .envelope-wrapper.aberto .envelope-flap { transform: rotateX(180deg); z-index: 1; }
 
-/* Estilo do conteúdo interno da carta */
+
 .envelope-paper h2 { color: #4a1230; font-size: 1.2rem; }
 .envelope-paper p { color: #333; text-align: left; font-size: 14px; line-height: 1.5; }
 .foto-interna { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-/* MEDIA QUERIES PARA CELULAR */
+
 @media (max-width: 480px) {
     .timer {
-        grid-template-columns: repeat(2, 1fr); /* No celular pequeno, fica em 2 colunas */
+        grid-template-columns: repeat(2, 1fr); 
     }
     
     .timelineItem {
-        flex-direction: column; /* Foto em cima do texto no celular */
+        flex-direction: column; 
         text-align: center;
     }
     
@@ -836,7 +796,6 @@ audio {
     }
 }
 
-/* CORAÇÕES E ANIMAÇÃO */
 .hearts {
     position: fixed;
     top: 0;
@@ -877,14 +836,14 @@ audio {
 
 <script>
 window.onload = function() {
-    // --- ELEMENTOS ---
+   
     const items = document.querySelectorAll('.slide-item');
     const startDate = new Date("2022-10-07T00:00:00");
     
     let currentIndex = 0;
     let autoPlayInterval;
 
-    // --- LÓGICA DO SLIDER 3D ---
+    
     function atualizarSlider3D() {
         if (items.length === 0) return;
         items.forEach((item, index) => {
@@ -900,7 +859,7 @@ window.onload = function() {
         });
     }
 
-    // Função global para as setas (onclick do HTML)
+  
     window.manualMudarSlide = function(n) {
         clearInterval(autoPlayInterval);
         currentIndex = (currentIndex + n + items.length) % items.length;
@@ -915,13 +874,13 @@ window.onload = function() {
         }, 3000);
     }
 
-    // Inicializa o slider
+   
     if (items.length > 0) {
         atualizarSlider3D();
         iniciarAutoplay();
     }
 
-    // --- CRONÔMETRO (CORRIGIDO PARA 3 ANOS+) ---
+    
     function updateTimer() {
         const now = new Date();
         const diff = now - startDate;
@@ -945,7 +904,7 @@ window.onload = function() {
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // --- PLAYER DE MÚSICA ---
+   
     window.togglePlay = function() {
         if (audio.paused) {
             audio.play();
@@ -965,24 +924,23 @@ window.onload = function() {
         });
     }
 
-    // --- OUTROS ---
-   // 1. Faz o envelope aparecer na tela
+
 window.mostrarEnvelope = function() {
     const envelope = document.getElementById("envelope");
     const btn = document.getElementById("btnMensagem");
     
     envelope.style.display = "block";
-    btn.style.display = "none"; // Some com o botão após clicar
+    btn.style.display = "none"; 
     envelope.scrollIntoView({ behavior: 'smooth' });
 };
 
-// 2. Abre o envelope e desdobra o papel
+
 window.toggleCarta = function() {
     const envelope = document.getElementById("envelope");
     envelope.classList.toggle("aberto");
 };
 
-    // Corações
+ 
     setInterval(function criarCoracao() {
         const heartContainer = document.querySelector(".hearts");
         if(!heartContainer) return;
@@ -996,7 +954,7 @@ window.toggleCarta = function() {
         setTimeout(() => coracao.remove(), 7000);
     }, 450);
 
-    // Autoplay da música no primeiro toque
+
     document.addEventListener("click", () => {
         if (audio && audio.paused && audio.currentTime === 0) {
             audio.play();
@@ -1097,28 +1055,32 @@ function irParaLogin() {
     document.getElementById('tela-login').style.display = 'flex';
 }
 
-// 1. Quando acerta a senha, vai para o AVISO
-function verificarSenha() {
-    const senha = document.getElementById('inputSenha').value;
-    const senhaCorreta = "07102022"; 
+async function verificarSenha() {
 
-    if (senha === senhaCorreta) {
+    const senhaDigitada = document.getElementById('inputSenha').value;
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode(senhaDigitada);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    const hashCorreto = "6f50c53bd3fe9f2a167b3b3da559d75fa20961f2a3a60be62a70fb102935adfa";
+
+    if(hashHex === hashCorreto){
         document.getElementById('tela-login').style.display = 'none';
-        document.getElementById('tela-aviso').style.display = 'flex'; // Abre o aviso
-    } else {
+        document.getElementById('tela-aviso').style.display = 'flex';
+    }else{
         alert("Senha incorreta! Tente a data do nosso início.");
     }
 }
 
-// 2. Quando clica no botão do aviso, inicia o LOADING
 function irParaLoading() {
     document.getElementById('tela-aviso').style.display = 'none';
     document.getElementById('tela-loading').style.display = 'flex';
-    iniciarLoading(); // Chama a função que você já tem
+    iniciarLoading(); 
 }
-
-// 3. A função de loading continua igual, mas garante que o vídeo venha depois
-
 
 function iniciarLoading() {
     let progresso = 0;
@@ -1177,7 +1139,6 @@ function iniciarControleVideo(){
     },13000);
 }
 
-// Função para finalmente mostrar o site
 function finalizarVideo() {
     const telaVideo = document.getElementById('tela-video');
     const videoElement = document.getElementById('meuVideo');
@@ -1186,31 +1147,25 @@ function finalizarVideo() {
     const musicaSite = document.getElementById('musica');
     const playBtn = document.getElementById('playBtn');
 
-    // 1. Para o vídeo e esconde a tela dele
     videoElement.pause();
     telaVideo.style.display = 'none';
 
-    // 2. Mostra a tela de transição (Loading rápido)
     telaTransicao.style.display = 'flex';
 
-    // 3. Aguarda 2.5 segundos para dar o efeito de carregamento
     setTimeout(() => {
-        // Começa a sumir com a tela de transição (Fade Out)
         telaTransicao.style.opacity = '0';
 
         setTimeout(() => {
             telaTransicao.style.display = 'none';
-            // Revela o site
+        
             conteudoPrincipal.style.display = 'block';
-
-            // 4. Inicia a música do site
             if(musicaSite) {
                 musicaSite.play().then(() => {
                     if(playBtn) playBtn.innerHTML = "⏸";
                 }).catch(e => console.log("Erro ao tocar música:", e));
             }
-        }, 1000); // Tempo para o Fade Out terminar
-    }, 2500); // Tempo que ela fica vendo o "Abrindo nosso mundo..."
+        }, 1000); 
+    }, 2500); 
 }
 </script>
 
@@ -1274,11 +1229,6 @@ function finalizarVideo() {
 
 </div>
 
-<!-- BOTÃO -->
-
-
-<!-- CARTA -->
-
 <button onclick="mostrarEnvelope()" id="btnMensagem" class="loveBtn">
     Uma mensagem para você 💌
 </button>
@@ -1288,7 +1238,7 @@ function finalizarVideo() {
     <div class="envelope-front"></div>
     
     <div class="envelope-paper">
-        <img src="fotocarta.jpeg" class="foto-interna">
+        <img src="fotoCarta.jpeg" class="foto-interna">
         <h2>Para você, Meu Amor! 🤍</h2>
         <p>
          Minha vida,
@@ -1329,27 +1279,23 @@ window.mostrarEnvelope = function() {
     envelope.scrollIntoView({ behavior: 'smooth' });
 };
 
-// Selecionando os elementos novamente para garantir
 const audio = document.getElementById("musica");
 const playBtn = document.getElementById("playBtn");
 const progressBar = document.getElementById("progressBar");
 
-// Variável para saber se já destravamos o áudio
 let audioDestravado = false;
 
-// FUNÇÃO MÁGICA: Toca ao encostar em qualquer lugar da tela pela primeira vez
 document.addEventListener("click", function() {
     if (!audioDestravado) {
         audio.play().then(() => {
-            playBtn.innerHTML = "⏸"; // Muda o botão para pause
-            audioDestravado = true;  // Marca como destravado para não reiniciar a cada clique
+            playBtn.innerHTML = "⏸"; 
+            audioDestravado = true;  
         }).catch(error => {
             console.log("O navegador ainda bloqueou o áudio:", error);
         });
     }
-}, { once: true }); // O '{ once: true }' faz esse evento rodar só UMA vez
+}, { once: true }); 
 
-// Função do Botão Play/Pause manual
 function togglePlay() {
     if (audio.paused) {
         audio.play();
@@ -1360,7 +1306,6 @@ function togglePlay() {
     }
 }
 
-// Atualização da barrinha (Verifique se isso já está no seu código)
 audio.addEventListener("timeupdate", () => {
     if (audio.duration) {
         const percentage = (audio.currentTime / audio.duration) * 100;
@@ -1412,4 +1357,3 @@ audio.addEventListener("timeupdate", () => {
 
 </body>
 </html>
-
